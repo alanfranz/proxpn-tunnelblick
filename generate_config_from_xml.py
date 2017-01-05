@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# must pass locations-vX.xml as first and only param.
+# must pass N locations-Vx.xml files
 
 from xml.etree.ElementTree import parse
 import sys
