@@ -58,10 +58,8 @@ def parse_locations_file(root):
             for port in TRY_PORTS:
                 if is_tcp_port_open(ip, port):
                     working.add((ip, port))
-#                formatted_tcp_addresses = "".join([ "remote {0} {1}\n".format(ip, port) for (ip, port) in working ])
         clients.setdefault(name, {}).setdefault("tcp", set()).update(working)
             
-#                clients["proXPN {1} ({0})".format(name, "TCP")] = "{0}\n{1}\n{2}\n{3}\n".format(OVPN_TEMPLATE, formatted_tcp_addresses, "proto tcp", CERTS)
         if not working:
             print("found no working tcp endpoint for {}".format(name))
 
@@ -71,9 +69,7 @@ def parse_locations_file(root):
             for port in TRY_PORTS:
                 if is_udp_openvpn_listening(ip, port):
                     working.add((ip, port))
-            #formatted_udp_addresses = "".join([ "remote {0} {1}\n".format(ip, port) for (ip, port) in working ])
         clients.setdefault(name, {}).setdefault("udp", set()).update(working)
- #               clients["proXPN {1} ({0})".format(name, "UDP")] = "{0}\n{1}\n{2}\n{3}\n".format(OVPN_TEMPLATE, formatted_udp_addresses, "proto udp", CERTS)
         if not working:
             print("found no working udp endpoint for {}".format(name))
     return clients
