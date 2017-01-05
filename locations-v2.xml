@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<proxpn>
+  <location-version>1</location-version>
+  <versions>
+    <linux id="1.1.0">http://www.proxpn.com/updater/linux.iso</linux>
+    <mac-os id="2.7.0"/>
+    <windows id="2.7.0"/>
+  </versions>
+  <locations>
+    <location>
+      <name>Free Chicago, IL</name>
+      <type>free</type>
+      <openvpn-udp key="free-chi1" ip="196.52.21.65">
+      </openvpn-udp>
+      <openvpn-udp key="free-chi2" ip="196.52.21.134">
+      </openvpn-udp>
+    </location>
+  <location><name>New York, USA</name><openvpn key="openvpn-bny3" ip="196.52.17.0">
+      </openvpn><openvpn-udp key="udp-bny2" ip="196.52.16.2">
+      </openvpn-udp><pptp key="pptp-bny2" ip="196.52.16.67">
+      </pptp><failover>Chicago, USA</failover></location><location><name>Miami, USA</name><openvpn key="openvpn-mfl" ip="192.240.98.3">
+      </openvpn><openvpn-udp key="udp-mfl2" ip="196.52.22.2">
+      </openvpn-udp><pptp key="pptp-mfl2" ip="196.52.22.67">
+      </pptp><failover>New York, USA</failover></location><location><name>Los Angeles, USA</name><signal>fair</signal><openvpn-udp key="udp-la3" ip="188.172.214.196">
+      </openvpn-udp><pptp key="pptp-la2" ip="188.172.214.197">
+    </pptp><failover>New York, USA</failover></location><location><name>Seattle, USA</name><openvpn key="openvpn-bse" ip="50.7.74.99">
+      </openvpn><openvpn-udp key="udp-bse2" ip="196.52.18.2">
+      </openvpn-udp><pptp key="pptp-bse" ip="196.52.18.67">
+    </pptp><failover>Dallas, USA</failover></location><location><name>Chicago, USA</name><openvpn key="openvpn-chi" ip="50.7.1.243">
+      </openvpn><openvpn-udp key="udp-chi3" ip="50.7.1.67">
+      </openvpn-udp><pptp key="pptp-chi2" ip="50.7.1.68">
+      </pptp><failover>Dallas, USA</failover><map>images/chicago.jpg</map></location><location><name>Toronto, CA</name><openvpn key="openvpn-tor" ip="162.253.128.69">
+      </openvpn><openvpn-udp key="udp-tor1" ip="162.253.128.67">
+      </openvpn-udp><pptp key="pptp-tor" ip="162.253.128.68">
+      </pptp><failover>Chicago, USA</failover></location><location><name>Amsterdam, NL</name><openvpn key="openvpn-nl" ip="213.179.213.2">
+      </openvpn><openvpn-udp key="udp-nl2" ip="213.179.212.2">
+      </openvpn-udp><openvpn-udp key="udp-nl1" ip="213.179.208.146">
+      </openvpn-udp><pptp key="pptp-nl" ip="213.179.213.7">
+      </pptp><failover>Dallas, USA</failover></location><location><name>Stockholm, SE</name><openvpn key="openvpn-swe" ip="94.185.84.35">
+      </openvpn><openvpn-udp key="udp-swe1" ip="94.185.84.42">
+      </openvpn-udp><pptp key="pptp-swe" ip="94.185.84.37">
+      </pptp><failover>Amsterdam, NL</failover></location><location><name>London, UK</name><openvpn key="openvpn-uk" ip="78.157.207.131">
+      </openvpn><openvpn-udp key="udp-uk1" ip="78.157.207.139">
+      </openvpn-udp><pptp key="pptp-uk" ip="78.157.207.134">
+      </pptp><failover>Amsterdam, NL</failover></location><location><name>Bucharest, RO</name><openvpn-udp key="udp-rou1" ip="89.46.102.14">
+      </openvpn-udp><failover>Amsterdam, NL</failover></location><location><name>Sydney, AU</name><openvpn key="openvpn-au" ip="45.32.241.118">
+      </openvpn><openvpn-udp key="udp-au3" ip="45.32.191.165">
+      </openvpn-udp><failover/></location><location><name>Frankfurt, DE</name><openvpn key="openvpn-fde" ip="50.7.89.131">
+      </openvpn><openvpn-udp key="udp-fde1" ip="50.7.88.172">
+      </openvpn-udp><pptp key="pptp-fde1" ip="50.7.89.132">
+      </pptp><failover>Amsterdam, NL</failover></location><location><name>Paris, FR</name><openvpn-udp key="udp-fr2" ip="151.236.21.12">
+      </openvpn-udp><failover>Frankfurt, DE</failover></location><location><name>Singapore, SG</name><openvpn-udp key="udp-sg5" ip="209.58.163.41">
+      </openvpn-udp><failover>Frankfurt, DE</failover></location><location><name>Hong Kong, CN</name><openvpn-udp key="udp-hkx1" ip="209.58.185.40">
+      </openvpn-udp><failover>Singapore, SG</failover></location><location><name>San Jose, CR</name><openvpn-udp key="udp-bcr1" ip="190.10.8.104">
+      </openvpn-udp><failover>Miami, USA</failover></location><location><name>Hafnarfjordur, IS</name><openvpn-udp key="udp-is1" ip="37.235.49.195">
+      </openvpn-udp><failover>London, UK</failover></location><location><name>Zurich, CH</name><openvpn-udp key="udp-zch1" ip="178.209.52.135">
+      </openvpn-udp><failover>London, UK</failover></location><location><name>Trial</name><openvpn key="openvpn-trial" ip="196.52.21.65">
+      </openvpn><pptp key="pptp-trial" ip="107.6.100.11">
+      </pptp></location></locations>
+</proxpn>
