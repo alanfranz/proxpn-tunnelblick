@@ -12,8 +12,6 @@
       <type>free</type>
       <openvpn-udp key="free-chi1" ip="196.52.21.65">
       </openvpn-udp>
-      <openvpn-udp key="free-chi2" ip="196.52.21.134">
-      </openvpn-udp>
     </location>
   <location><name>New York, USA</name><openvpn key="openvpn-bny3" ip="196.52.17.0">
       </openvpn><openvpn-udp key="udp-bny2" ip="196.52.16.2">
@@ -43,15 +41,16 @@
       </openvpn><openvpn-udp key="udp-uk1" ip="78.157.207.139">
       </openvpn-udp><pptp key="pptp-uk" ip="78.157.207.134">
       </pptp><failover>Amsterdam, NL</failover></location><location><name>Bucharest, RO</name><openvpn-udp key="udp-rou1" ip="89.46.102.14">
-      </openvpn-udp><failover>Amsterdam, NL</failover></location><location><name>Sydney, AU</name><openvpn key="openvpn-au" ip="45.32.241.118">
-      </openvpn><openvpn-udp key="udp-au3" ip="45.32.191.165">
-      </openvpn-udp><failover/></location><location><name>Frankfurt, DE</name><openvpn key="openvpn-fde" ip="50.7.89.131">
+      </openvpn-udp><failover>Amsterdam, NL</failover></location><location><name>Sydney, AU</name><openvpn-udp key="udp-au3" ip="45.32.191.165">
+      </openvpn-udp><openvpn key="openvpn-au" ip="45.32.241.118">
+      </openvpn><failover/></location><location><name>Frankfurt, DE</name><openvpn key="openvpn-fde" ip="50.7.89.131">
       </openvpn><openvpn-udp key="udp-fde1" ip="50.7.88.172">
       </openvpn-udp><pptp key="pptp-fde1" ip="50.7.89.132">
       </pptp><failover>Amsterdam, NL</failover></location><location><name>Paris, FR</name><openvpn-udp key="udp-fr2" ip="151.236.21.12">
       </openvpn-udp><failover>Frankfurt, DE</failover></location><location><name>Singapore, SG</name><openvpn-udp key="udp-sg5" ip="209.58.163.41">
       </openvpn-udp><failover>Frankfurt, DE</failover></location><location><name>Hong Kong, CN</name><openvpn-udp key="udp-hkx1" ip="209.58.185.40">
-      </openvpn-udp><failover>Singapore, SG</failover></location><location><name>San Jose, CR</name><openvpn-udp key="udp-bcr1" ip="190.10.8.104">
+      </openvpn-udp><failover>Singapore, SG</failover></location><location><name>San Jose, CR</name><openvpn key="openvpn-cr" ip="179.48.248.104">
+      </openvpn><openvpn-udp key="udp-cr1" ip="179.48.248.105">
       </openvpn-udp><failover>Miami, USA</failover></location><location><name>Hafnarfjordur, IS</name><openvpn-udp key="udp-is1" ip="37.235.49.195">
       </openvpn-udp><failover>London, UK</failover></location><location><name>Zurich, CH</name><openvpn-udp key="udp-zch1" ip="178.209.52.135">
       </openvpn-udp><failover>London, UK</failover></location><location><name>Trial</name><openvpn key="openvpn-trial" ip="196.52.21.65">
