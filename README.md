@@ -1,13 +1,15 @@
 proxpn-tunnelblick
 ==================
 
-This repository contains setting files (*.tblk) for Tunnelblick/OpenVPN appropriate for use with proXPN OpenVPN service.
+This repository contains setting files (*.tblk) for Tunnelblick/OpenVPN appropriate for use with proXPN OpenVPN service,
+along with the python script that can be used to generate them.
+
 
 These settings were derived from the sample OpenVPN configuration files with information extracted from the proXPN branded Tunnelblick client.
 
 These settings were created due to issues using the branded proXPN client on Macintosh OS X 10.9.5.
 
-For more information and background please visit https://paretech.wordpress.com/2014/12/14/proxpn.
+For more information and background on the original project (this is a fork) please visit https://paretech.wordpress.com/2014/12/14/proxpn.
 
 ## Installation
 1. Verify that Tunnelblick is installed.
