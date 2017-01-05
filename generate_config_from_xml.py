@@ -5,27 +5,84 @@ from xml.etree.ElementTree import parse
 import sys
 import os
 import codecs
+import socket
+from contextlib import closing
 
-clients = {}
+def is_tcp_port_open(host, port):
+    print("now checking tcp {}:{}".format(host, port))
+    with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as sock:
+        sock.settimeout(5)
+        if sock.connect_ex((host, port)) == 0:
+            return True
+        else:
+            return False
 
+OPENVPN_SERVER_CHECK= b"\x38\x01\x00\x00\x00\x00\x00\x00\x00"
 
-def main():
-    root = parse(sys.argv[1])
+def is_udp_openvpn_listening(ip,port):
+   print('now checking udp {}s:{}'.format(ip,port)) 
+   sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+   sock.settimeout(5) # in seconds
+   sock.connect((ip, port))
+   sock.send(OPENVPN_SERVER_CHECK)
+   try:
+      dta=sock.recv(100)
+      return True
+   except:
+      return False
+   finally:
+       sock.close()
+
+TRY_PORTS = [1194, 443, 8080, 80]
+
+def parse_locations_file(root):
+    clients = {}
     locations = root.getiterator("location")
     for location in locations:
         name = location.find("name").text
         all_tcp_addresses = [tcp.attrib["ip"] for tcp in location.findall("openvpn")]
         if all_tcp_addresses:
-            formatted_tcp_addresses = "".join([ "remote {0} 1194\nremote {0} 443\nremote {0} 8080\n".format(ip) for ip in all_tcp_addresses ])
-            clients["proXPN {1} ({0})".format(name, "TCP")] = "{0}\n{1}\n{2}\n{3}\n".format(OVPN_TEMPLATE, formatted_tcp_addresses, "proto tcp", CERTS)
+            working = []
+            for ip in all_tcp_addresses:
+                for port in TRY_PORTS:
+                    if is_tcp_port_open(ip, port):
+                        working.append((ip, port))
+            if working: 
+                formatted_tcp_addresses = "".join([ "remote {0} {1}\n".format(ip, port) for (ip, port) in working ])
+                clients["proXPN {1} ({0})".format(name, "TCP")] = "{0}\n{1}\n{2}\n{3}\n".format(OVPN_TEMPLATE, formatted_tcp_addresses, "proto tcp", CERTS)
+            else:
+                print("found no working tcp endpoint for {}, tunnelblick file won't be written".format(name))
 
         all_udp_addresses = [udp.attrib["ip"] for udp in location.findall("openvpn-udp")]
         if all_udp_addresses:
-            formatted_udp_addresses = "".join([ "remote {0} 443\n".format(ip) for ip in all_udp_addresses ])
-            clients["proXPN {1} ({0})".format(name, "UDP")] = "{0}\n{1}\n{2}\n{3}\n".format(OVPN_TEMPLATE, formatted_udp_addresses, "proto udp", CERTS)
+            working = []
+            for ip in all_udp_addresses:
+                for port in TRY_PORTS:
+                    if is_udp_openvpn_listening(ip, port):
+                        working.append((ip, port))
+            if working: 
+                formatted_udp_addresses = "".join([ "remote {0} {1}\n".format(ip, port) for (ip, port) in working ])
+                clients["proXPN {1} ({0})".format(name, "UDP")] = "{0}\n{1}\n{2}\n{3}\n".format(OVPN_TEMPLATE, formatted_udp_addresses, "proto udp", CERTS)
+            else:
+                print("found no working udp endpoint for {}, tunnelblick file won't be written".format(name))
+    return clients
 
+def main():
+    if len(sys.argv) < 2:
+        raise ValueError("must pass at least one location file")
 
-    for key, value in clients.items():
+    all_clients = {}
+    for fn in sys.argv[1:]:
+        root = parse(fn)
+        clients = parse_locations_file(root)
+        # try merging data and write if it's different
+        for key, value in clients.items():
+            if key in all_clients and all_clients[key] != value:
+                print("data conflict for {}:\n{}\n\n".format(key, value))
+            else:
+                all_clients[key] = value
+
+    for key, value in all_clients.items():
         path = os.path.join(key + ".tblk", "Contents","Resources")
         os.makedirs(path)
         with codecs.open(os.path.join(path, "config.ovpn"), "wb", encoding="utf-8") as f:
