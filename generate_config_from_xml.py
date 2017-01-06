@@ -135,6 +135,7 @@ tun-mtu 1500
 mssfix 1450
 auth-user-pass
 reneg-sec 0
+reneg-bytes 67108864
 """
 
 CERTS = """<ca>
