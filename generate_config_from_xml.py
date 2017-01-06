@@ -44,7 +44,7 @@ def is_udp_openvpn_listening(ip,port):
    finally:
        sock.close()
 
-TRY_PORTS = [1194, 443, 8080, 80]
+TRY_PORTS = [443, 8080, 80]
 
 def parse_locations_file(root):
     clients = {}
@@ -99,9 +99,22 @@ def main():
             path = os.path.join("proXPN {0} ({1})".format(endpoint_type.upper(), key) + ".tblk", "Contents","Resources")
             os.makedirs(path)
             with codecs.open(os.path.join(path, "config.ovpn"), "wb", encoding="utf-8") as f:
-                formatted = "".join([ "remote {0} {1}\n".format(ip, port) for (ip, port) in value[endpoint_type]])
+                formatted = "".join([ "remote {0} {1}\n".format(ip, port) for (ip, port) in sorted(value[endpoint_type])])
                 full_config = "{0}\n{1}\n{2}\n{3}\n".format(OVPN_TEMPLATE, formatted, "proto {}".format(endpoint_type), CERTS)
                 f.write(full_config)
+
+    # global config for random connections
+    for endpoint_type in ("tcp", "udp"):
+        all_endpoints = [value[endpoint_type] for value in all_clients.values()]
+        flattened = [item for sublist in all_endpoints for item in sublist]
+        path = os.path.join("proXPN RANDOM {0}".format(endpoint_type.upper()) + ".tblk", "Contents","Resources")
+        os.makedirs(path)
+        with codecs.open(os.path.join(path, "config.ovpn"), "wb", encoding="utf-8") as f:
+            formatted = "".join([ "remote {0} {1}\n".format(ip, port) for (ip, port) in sorted(flattened)])
+            full_config = "{0}\n{1}\n{2}\n{3}\n".format(OVPN_TEMPLATE, formatted, "proto {}".format(endpoint_type), CERTS)
+            f.write(full_config)
+
+
 
 OVPN_TEMPLATE = """client
 dev tun
