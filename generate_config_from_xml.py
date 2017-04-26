@@ -34,7 +34,11 @@ def is_udp_openvpn_listening(ip,port):
    print('now checking udp {}s:{}'.format(ip,port)) 
    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
    sock.settimeout(5) # in seconds
-   sock.connect((ip, port))
+   try:
+    sock.connect((ip, port))
+   except:
+    print(ip,port)
+    raise
    sock.send(OPENVPN_SERVER_CHECK)
    try:
       dta=sock.recv(100)
@@ -66,6 +70,7 @@ def parse_locations_file(root):
         all_udp_addresses = [udp.attrib["ip"] for udp in location.findall("openvpn-udp")]
         working = set()
         for ip in all_udp_addresses:
+            ip = ip.strip()
             for port in TRY_PORTS:
                 if is_udp_openvpn_listening(ip, port):
                     working.add((ip, port))
