@@ -8,7 +8,7 @@
   </versions>
   <locations>
     <location>
-      <name>Free Chicago, IL</name>
+      <name>Free Chicago, US</name>
       <type>free</type>
       <openvpn-udp key="free-chi1" ip="196.52.21.65">
       </openvpn-udp>
@@ -38,15 +38,6 @@
       <failover>New York, USA</failover>
     </location>
     <location>
-      <name>Los Angeles, USA</name>
-      <signal>fair</signal>
-      <openvpn-udp key="udp-la3" ip="188.172.214.196">
-      </openvpn-udp>
-      <pptp key="pptp-la2" ip="188.172.214.197">
-    </pptp>
-      <failover>New York, USA</failover>
-    </location>
-    <location>
       <name>Seattle, USA</name>
       <openvpn key="openvpn-bse" ip="196.52.18.193">
       </openvpn>
@@ -57,6 +48,15 @@
       <pptp key="pptp-bse" ip="196.52.18.67">
     </pptp>
       <failover>Dallas, USA</failover>
+    </location>
+    <location>
+      <name>Los Angeles, USA</name>
+      <signal>fair</signal>
+      <openvpn-udp key="udp-la3" ip="188.172.214.196">
+      	</openvpn-udp>
+      <pptp key="pptp-la2" ip="188.172.214.197">
+    </pptp>
+      <failover>New York, USA</failover>
     </location>
     <location>
       <name>Chicago, USA</name>
@@ -103,7 +103,7 @@
       </openvpn-udp>
       <openvpn-udp key="udp-zch2" ip="178.209.52.32">
       </openvpn-udp>
-      <failover>London, UK</failover>
+      <failover>London, GB</failover>
     </location>
     <location>
       <name>Stockholm, SE</name>
@@ -116,7 +116,7 @@
       <failover>Amsterdam, NL</failover>
     </location>
     <location>
-      <name>London, UK</name>
+      <name>London, GB</name>
       <openvpn key="openvpn-uk" ip="78.157.207.131">
       </openvpn>
       <openvpn-udp key="udp-uk1" ip="78.157.207.139">
