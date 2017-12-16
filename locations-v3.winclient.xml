@@ -8,7 +8,7 @@
   </versions>
   <locations>
     <location>
-      <name>Free Chicago, IL</name>
+      <name>Free Chicago, US</name>
       <type>free</type>
       <openvpn-udp key="free-chi1" ip="196.52.21.65">
       </openvpn-udp>
@@ -85,16 +85,9 @@
     </location>
     <location>
       <name>Amsterdam, NL</name>
-      <openvpn key="openvpn-nl" ip="213.179.213.2">
-      </openvpn>
-      <openvpn-udp key="udp-nl2" ip="213.179.212.2">
-      </openvpn-udp>
-      <openvpn-udp key="udp-nl1" ip="213.179.208.146">
-      </openvpn-udp>
-      <openvpn-udp key="udp-nl4" ip="213.179.212.12">
-      </openvpn-udp>
-      <pptp key="pptp-nl" ip="213.179.213.7">
-      </pptp>
+      <openvpn key="openvpn-ams1" ip="50.7.146.99"/>
+      <openvpn-udp key="udp-ams1" ip="50.7.145.30"/>
+      <pptp key="pptp-ams1" ip="50.7.146.101"/>
       <failover>Dallas, USA</failover>
     </location>
     <location>
@@ -103,7 +96,7 @@
       </openvpn-udp>
       <openvpn-udp key="udp-zch2" ip="178.209.52.32">
       </openvpn-udp>
-      <failover>London, UK</failover>
+      <failover>London, GB</failover>
     </location>
     <location>
       <name>Stockholm, SE</name>
@@ -116,7 +109,7 @@
       <failover>Amsterdam, NL</failover>
     </location>
     <location>
-      <name>London, UK</name>
+      <name>London, GB</name>
       <openvpn key="openvpn-uk" ip="78.157.207.131">
       </openvpn>
       <openvpn-udp key="udp-uk1" ip="78.157.207.139">
@@ -177,55 +170,55 @@
       </pptp>
     </location>
     <location>
-      <name>Miami</name>
+      <name>Miami, US</name>
       <type>freemium</type>
       <openvpn-udp key="udp-mflf1" ip="196.52.23.66">
      </openvpn-udp>
     </location>
     <location>
-      <name>New York</name>
+      <name>New York, US</name>
       <type>freemium</type>
       <openvpn-udp key="udp-bnyf1" ip="196.52.17.68">
      </openvpn-udp>
     </location>
     <location>
-      <name>Chicago</name>
+      <name>Chicago, US</name>
       <type>freemium</type>
       <openvpn-udp key="udp-chif1" ip="196.52.21.225">
      </openvpn-udp>
     </location>
     <location>
-      <name>Seattle</name>
+      <name>Seattle, US</name>
       <type>freemium</type>
       <openvpn-udp key="udp-bsef1" ip="196.52.19.241">
      </openvpn-udp>
     </location>
     <location>
-      <name>Frankfurt</name>
+      <name>Frankfurt, DE</name>
       <type>freemium</type>
       <openvpn-udp key="udp-fdef1" ip="185.41.141.171">
      </openvpn-udp>
     </location>
     <location>
-      <name>Stockholm</name>
+      <name>Stockholm, SE</name>
       <type>freemium</type>
       <openvpn-udp key="udp-swef1" ip="94.185.84.38">
      </openvpn-udp>
     </location>
     <location>
-      <name>Amsterdam</name>
+      <name>Amsterdam, NL</name>
       <type>freemium</type>
-      <openvpn-udp key="udp-nlf1" ip="213.179.208.145">
+      <openvpn-udp key="udp-amsf1" ip="50.7.146.100">
      </openvpn-udp>
     </location>
     <location>
-      <name>London</name>
+      <name>London, GB</name>
       <type>freemium</type>
       <openvpn-udp key="udp-ukbf1" ip="78.157.207.138">
      </openvpn-udp>
     </location>
     <location>
-      <name>Singapore</name>
+      <name>Singapore, SG</name>
       <type>freemium</type>
       <openvpn-udp key="udp-sgxf1" ip="209.58.163.161 ">
      </openvpn-udp>

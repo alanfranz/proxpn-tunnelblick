@@ -62,8 +62,6 @@
       <name>Chicago, USA</name>
       <openvpn key="openvpn-chi" ip="50.7.1.243">
       </openvpn>
-      <openvpn-udp key="udp-chi3" ip="50.7.1.67">
-      </openvpn-udp>
       <openvpn-udp key="udp-chi2" ip="50.7.1.246">
       </openvpn-udp>
       <openvpn-udp key="udp-chi1" ip="50.7.1.251">
@@ -85,16 +83,9 @@
     </location>
     <location>
       <name>Amsterdam, NL</name>
-      <openvpn key="openvpn-nl" ip="213.179.213.2">
-      </openvpn>
-      <openvpn-udp key="udp-nl2" ip="213.179.212.2">
-      </openvpn-udp>
-      <openvpn-udp key="udp-nl1" ip="213.179.208.146">
-      </openvpn-udp>
-      <openvpn-udp key="udp-nl4" ip="213.179.212.12">
-      </openvpn-udp>
-      <pptp key="pptp-nl" ip="213.179.213.7">
-      </pptp>
+      <openvpn key="openvpn-ams1" ip="50.7.146.99"/>
+      <openvpn-udp key="udp-ams1" ip="50.7.145.30"/>
+      <pptp key="pptp-ams1" ip="50.7.146.101"/>
       <failover>Dallas, USA</failover>
     </location>
     <location>
@@ -215,7 +206,7 @@
     <location>
       <name>Amsterdam, NL</name>
       <type>freemium</type>
-      <openvpn-udp key="udp-nlf1" ip="213.179.208.145">
+      <openvpn-udp key="udp-amsf1" ip="50.7.146.100">
      </openvpn-udp>
     </location>
     <location>
