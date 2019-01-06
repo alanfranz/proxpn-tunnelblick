@@ -16,6 +16,14 @@
       </openvpn-udp>
     </location>
     <location>
+      <name>BETA-UNBLOCK-NETFLIX, USA</name>
+      <openvpn-udp key="udp-ubusa" ip="50.7.1.221"> </openvpn-udp>
+    </location>
+    <location>
+      <name>NETFLIX-UNBLOCK-BETA, USA</name>
+      <openvpn-udp key="udp-ubas" ip="209.58.163.167"> </openvpn-udp>
+    </location>
+    <location>
       <name>New York, USA</name>
       <openvpn key="openvpn-bny3" ip="196.52.17.0">
       </openvpn>
@@ -92,8 +100,6 @@
       <name>Zurich, CH</name>
       <openvpn-udp key="udp-zch1" ip="178.209.52.135">
       </openvpn-udp>
-      <openvpn-udp key="udp-zch2" ip="178.209.52.32">
-      </openvpn-udp>
       <failover>London, GB</failover>
     </location>
     <location>
@@ -127,20 +133,9 @@
       <failover/>
     </location>
     <location>
-      <name>Frankfurt, DE</name>
-      <openvpn key="openvpn-fde" ip="50.7.89.131">
-      </openvpn>
-      <openvpn-udp key="udp-fde1" ip="50.7.88.172">
-      </openvpn-udp>
-      <pptp key="pptp-fde1" ip="50.7.89.132">
-      </pptp>
-      <failover>Amsterdam, NL</failover>
-    </location>
-    <location>
       <name>Singapore, SG</name>
       <openvpn-udp key="udp-sg5" ip="209.58.163.41">
       </openvpn-udp>
-      <failover>Frankfurt, DE</failover>
     </location>
     <location>
       <name>Hong Kong, CN</name>

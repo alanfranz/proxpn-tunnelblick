@@ -55,7 +55,8 @@ def parse_locations_file(root):
     locations = root.getiterator("location")
     for location in locations:
         name_candidate = location.find("name").text
-        name = NAME_MAPPING.get(name_candidate, name_candidate)
+        #name = NAME_MAPPING.get(name_candidate, name_candidate)
+        name = name_candidate
         all_tcp_addresses = [tcp.attrib["ip"] for tcp in location.findall("openvpn")]
         working = set()
         for ip in all_tcp_addresses:
