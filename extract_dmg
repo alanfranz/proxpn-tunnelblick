@@ -1,0 +1,3 @@
+#!/bin/bash -e
+7z e $1 proXPN/proXPN.app/Contents/Resources/locations-v3.xml
+mv -f locations-v3.xml locations-v3.macclient.xml

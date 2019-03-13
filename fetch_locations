@@ -1,0 +1,5 @@
+#!/bin/bash -e
+wget http://proxpn.com/updater/locations-v3.xml http://proxpn.com/updater/locations-v2.xml
+mv -f locations-v3.xml locations-v3.update.xml
+mv -f locations-v2.xml locations-v2.update.xml
+

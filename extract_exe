@@ -1,0 +1,3 @@
+#!/bin/bash -e
+7z e $1 bin/locations-v3.xml
+mv -f locations-v3.xml locations-v3.winclient.xml
