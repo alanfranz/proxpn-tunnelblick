@@ -10,8 +10,6 @@
     <location>
       <name>Free Chicago, US</name>
       <type>free</type>
-      <openvpn-udp key="free-chi1" ip="196.52.21.65">
-      </openvpn-udp>
       <openvpn-udp key="free-chi2" ip="196.52.21.134">
       </openvpn-udp>
     </location>
@@ -70,9 +68,7 @@
       <name>Chicago, USA</name>
       <openvpn key="openvpn-chi" ip="50.7.1.243">
       </openvpn>
-      <openvpn-udp key="udp-chi2" ip="50.7.1.246">
-      </openvpn-udp>
-      <openvpn-udp key="udp-chi1" ip="50.7.1.251">
+      <openvpn-udp key="udp-chi1" ip="23.237.136.123">
       </openvpn-udp>
       <pptp key="pptp-chi2" ip="50.7.1.68">
       </pptp>
@@ -101,16 +97,6 @@
       <openvpn-udp key="udp-zch1" ip="178.209.52.135">
       </openvpn-udp>
       <failover>London, GB</failover>
-    </location>
-    <location>
-      <name>Stockholm, SE</name>
-      <openvpn key="openvpn-swe" ip="94.185.84.35">
-      </openvpn>
-      <openvpn-udp key="udp-swe1" ip="94.185.84.42">
-      </openvpn-udp>
-      <pptp key="pptp-swe" ip="94.185.84.37">
-      </pptp>
-      <failover>Amsterdam, NL</failover>
     </location>
     <location>
       <name>London, GB</name>
