@@ -36,66 +36,82 @@ def is_udp_openvpn_listening(ip,port):
    sock.settimeout(5) # in seconds
    try:
     sock.connect((ip, port))
+    print("socket connected")
    except:
     print(ip,port)
+    sock.close()
     raise
    sock.send(OPENVPN_SERVER_CHECK)
    try:
       dta=sock.recv(100)
       return True
-   except:
+   except Exception as e:
+      print(e)
       return False
    finally:
        sock.close()
 
 TRY_PORTS = [443, 8080, 80]
 
-def parse_locations_file(root):
+def parse_locations_file(roots):
     clients = {}
-    locations = root.getiterator("location")
-    for location in locations:
-        name_candidate = location.find("name").text
-        #name = NAME_MAPPING.get(name_candidate, name_candidate)
-        name = name_candidate
-        all_tcp_addresses = [tcp.attrib["ip"] for tcp in location.findall("openvpn")]
-        working = set()
-        for ip in all_tcp_addresses:
-            for port in TRY_PORTS:
-                if is_tcp_port_open(ip, port):
-                    working.add((ip, port))
-        clients.setdefault(name, {}).setdefault("tcp", set()).update(working)
-            
-        if not working:
-            print("found no working tcp endpoint for {}".format(name))
 
-        all_udp_addresses = [udp.attrib["ip"] for udp in location.findall("openvpn-udp")]
-        working = set()
-        for ip in all_udp_addresses:
-            ip = ip.strip()
-            for port in TRY_PORTS:
-                if is_udp_openvpn_listening(ip, port):
-                    working.add((ip, port))
-        clients.setdefault(name, {}).setdefault("udp", set()).update(working)
-        if not working:
-            print("found no working udp endpoint for {}".format(name))
+    tcp_globally_tested = set()
+    udp_globally_tested = set()
+
+    for root in roots:
+        locations = root.getiterator("location")
+        for location in locations:
+            name_candidate = location.find("name").text
+            #name = NAME_MAPPING.get(name_candidate, name_candidate)
+            name = name_candidate
+            if name.endswith("US"):
+                name = name + "A"
+            all_tcp_addresses = [tcp.attrib["ip"] for tcp in location.findall("openvpn")]
+            working = set()
+            for ip in all_tcp_addresses:
+                for port in TRY_PORTS:
+                    if (ip, port) in tcp_globally_tested:
+                        continue
+                    tcp_globally_tested.add((ip, port))
+                    if is_tcp_port_open(ip, port):
+                        working.add((ip, port))
+            clients.setdefault(name, {}).setdefault("tcp", set()).update(working)
+                
+            if not working:
+                print("found no working tcp endpoint for {}".format(name))
+
+            all_udp_addresses = [udp.attrib["ip"] for udp in location.findall("openvpn-udp")]
+            working = set()
+            for ip in all_udp_addresses:
+                ip = ip.strip()
+                for port in TRY_PORTS:
+                    if (ip, port) in udp_globally_tested:
+                        continue
+                    udp_globally_tested.add((ip, port))
+                    if is_udp_openvpn_listening(ip, port):
+                        working.add((ip, port))
+            clients.setdefault(name, {}).setdefault("udp", set()).update(working)
+            if not working:
+                print("found no working udp endpoint for {}".format(name))
     return clients
 
 def main():
     if len(sys.argv) < 2:
         raise ValueError("must pass at least one location file")
 
-    all_clients = {}
-    for fn in sys.argv[1:]:
-        root = parse(fn)
-        clients = parse_locations_file(root)
+    #all_clients = {}
+    #for fn in sys.argv[1:]:
+    #    root = parse(fn)
+    all_clients = parse_locations_file([parse(fn) for fn in sys.argv[1:]])
         # try merging data and write if it's different
-        for key, value in clients.items():
-            if key in all_clients:
-                all_clients[key]["tcp"].update(value["tcp"])
-                all_clients[key]["udp"].update(value["udp"])
-                print("data conflict merged for {}".format(key))
-            else:
-                all_clients[key] = value
+    #    for key, value in clients.items():
+    #        if key in all_clients:
+    #            all_clients[key]["tcp"].update(value["tcp"])
+    #            all_clients[key]["udp"].update(value["udp"])
+    #            print("data conflict merged for {}".format(key))
+    #        else:
+    #            all_clients[key] = value
 
     for key, value in all_clients.items():
         for endpoint_type in ("tcp", "udp"):
